@@ -1,41 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.1</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
-    <groupId>com.hive</groupId>
-    <artifactId>sell</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>sell</name>
-    <description>cloud computing selling management system</description>
 
+    <groupId>org.example</groupId>
+    <artifactId>springboot-jdbc</artifactId>
+    <version>1.0-SNAPSHOT</version>
     <properties>
         <java.version>1.8</java.version>
     </properties>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.4.RELEASE</version>
+    </parent>
 
     <dependencies>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!--
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        -->
 
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -44,19 +46,61 @@
         </dependency>
 
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-
-        <!--
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-common</artifactId>
-            <version>2.6.0</version>
+            <groupId>org.apache.hive</groupId>
+            <artifactId>hive-jdbc</artifactId>
+            <version>1.2.1</version>
             <exclusions>
                 <exclusion>
                     <artifactId>guava</artifactId>
                     <groupId>com.google.guava</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-collections</artifactId>
+                    <groupId>commons-collections</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>log4j</artifactId>
+                    <groupId>log4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>avro</artifactId>
+                    <groupId>org.apache.avro</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>curator-client</artifactId>
+                    <groupId>org.apache.curator</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>curator-recipes</artifactId>
+                    <groupId>org.apache.curator</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>hadoop-annotations</artifactId>
+                    <groupId>org.apache.hadoop</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-jaxrs</artifactId>
+                    <groupId>org.codehaus.jackson</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>jackson-xc</artifactId>
+                    <groupId>org.codehaus.jackson</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>commons-logging</artifactId>
+                    <groupId>commons-logging</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-common</artifactId>
+            <version>2.7.2</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>jsr305</artifactId>
+                    <groupId>com.google.code.findbugs</groupId>
                 </exclusion>
                 <exclusion>
                     <artifactId>commons-lang</artifactId>
@@ -65,18 +109,6 @@
                 <exclusion>
                     <artifactId>commons-logging</artifactId>
                     <groupId>commons-logging</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>netty</artifactId>
-                    <groupId>io.netty</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>servlet-api</artifactId>
-                    <groupId>javax.servlet</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>log4j</artifactId>
-                    <groupId>log4j</groupId>
                 </exclusion>
                 <exclusion>
                     <artifactId>curator-framework</artifactId>
@@ -90,97 +122,6 @@
                     <artifactId>jackson-mapper-asl</artifactId>
                     <groupId>org.codehaus.jackson</groupId>
                 </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-mapreduce-client-core</artifactId>
-            <version>2.6.0</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>jackson-jaxrs</artifactId>
-                    <groupId>org.codehaus.jackson</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jackson-xc</artifactId>
-                    <groupId>org.codehaus.jackson</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-mapreduce-client-common</artifactId>
-            <version>2.6.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-hdfs</artifactId>
-            <version>2.6.0</version>
-        </dependency>
-        -->
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-hadoop</artifactId>
-            <version>2.5.0.RELEASE</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.apache.hive</groupId>
-            <artifactId>hive-jdbc</artifactId>
-            <version>2.3.3</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.eclipse.jetty.aggregate</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>commons-compress</artifactId>
-                    <groupId>org.apache.commons</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>curator-client</artifactId>
-                    <groupId>org.apache.curator</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>curator-recipes</artifactId>
-                    <groupId>org.apache.curator</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>*</artifactId>
-                    <groupId>org.apache.hadoop</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>libthrift</artifactId>
-                    <groupId>org.apache.thrift</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>zookeeper</artifactId>
-                    <groupId>org.apache.zookeeper</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jackson-core-asl</artifactId>
-                    <groupId>org.codehaus.jackson</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jackson-jaxrs</artifactId>
-                    <groupId>org.codehaus.jackson</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jackson-mapper-asl</artifactId>
-                    <groupId>org.codehaus.jackson</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jersey-json</artifactId>
-                    <groupId>com.sun.jersey</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jsr305</artifactId>
-                    <groupId>com.google.code.findbugs</groupId>
-                </exclusion>
                 <exclusion>
                     <artifactId>guava</artifactId>
                     <groupId>com.google.guava</groupId>
@@ -189,34 +130,8 @@
                     <artifactId>commons-collections</artifactId>
                     <groupId>commons-collections</groupId>
                 </exclusion>
-                <exclusion>
-                    <artifactId>commons-logging</artifactId>
-                    <groupId>commons-logging</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>servlet-api</artifactId>
-                    <groupId>javax.servlet</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>avro</artifactId>
-                    <groupId>org.apache.avro</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jdk.tools</artifactId>
-                    <groupId>jdk.tools</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jackson-xc</artifactId>
-                    <groupId>org.codehaus.jackson</groupId>
-                </exclusion>
             </exclusions>
         </dependency>
-
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jdbc</artifactId>
-        </dependency>
-
 
 
     </dependencies>
@@ -226,16 +141,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
             </plugin>
         </plugins>
     </build>
-
 </project>
