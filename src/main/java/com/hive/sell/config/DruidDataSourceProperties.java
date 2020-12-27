@@ -14,7 +14,7 @@ public class DruidDataSourceProperties {
 
     private String password;
 
-    private String jdbcUrl;
+    private String url;
 
     private String driverClassName;
 

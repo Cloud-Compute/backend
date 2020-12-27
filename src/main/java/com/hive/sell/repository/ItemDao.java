@@ -7,10 +7,11 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-public class UserDao extends DruidHiveRepository {
+public class ItemDao extends DruidHiveRepository {
+
     public List<Map<String, Object>> getAll() {
 
-        String sql = "SELECT * FROM users";
+        String sql = "SELECT * FROM items";
 
         List<Map<String, Object>> list = null;
         try {
