@@ -1,11 +1,16 @@
 package com.hive.sell.repository;
 
+import com.hive.sell.repository.DruidHiveRepository;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;
 
+/**
+ * items
+ * id, name, description, price
+ */
 @Repository
 public class ItemDao extends DruidHiveRepository {
 
