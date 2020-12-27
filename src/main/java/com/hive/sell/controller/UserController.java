@@ -1,28 +1,25 @@
 package com.hive.sell.controller;
 
-import com.hive.sell.repository.UserDao;
+import com.hive.sell.pojo.User;
+import com.hive.sell.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
+
 
 @RestController
-//@RequestMapping("user")
 public class UserController {
-
     @Autowired
-    private UserDao userDao;
+    private IUserService iUserService;
 
-    @GetMapping("/api/getAllUser")
-    public List<Map<String, Object>> getAllUser() {
-        return userDao.getAll();
+    @RequestMapping("api/getAllUser")
+    public List<User> getAll() {
+        return iUserService.getAll();
     }
 
-    @GetMapping("/test/id")
-    public String getId(@RequestParam() String name) {
-        return userDao.getIdByName(name);
-    }
+//    @RequestMapping("api/getAllOrdersOfUser")
+//    public
+
 }

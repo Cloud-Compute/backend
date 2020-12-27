@@ -1,21 +1,23 @@
 package com.hive.sell.controller;
 
-import com.hive.sell.repository.ItemDao;
+
+import com.hive.sell.pojo.Item;
+import com.hive.sell.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 public class ItemController {
 
     @Autowired
-    private ItemDao itemDao;
+    IItemService iItemService;
 
-    @GetMapping("/api/getAllItems")
-    public List<Map<String, Object>> getAllItems() {
-        return itemDao.getAll();
+    @RequestMapping("api/getAllItems")
+    List<Item> getAll() {
+        return iItemService.getAll();
     }
+
 }
