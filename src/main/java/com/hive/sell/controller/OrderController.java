@@ -1,6 +1,7 @@
 package com.hive.sell.controller;
 
 import com.hive.sell.GlobalResult.DataResult;
+import com.hive.sell.GlobalResult.TotalDataResult;
 import com.hive.sell.pojo.Item;
 import com.hive.sell.pojo.Order;
 import com.hive.sell.pojo.User;
@@ -12,9 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 @RestController
@@ -34,24 +33,29 @@ public class OrderController {
         return DataResult.build(iOrderService.getAll());
     }
 
-    @GetMapping("/api/getTopSellingItem")
-    public List<Item> getTopItem() {
-        List<Item> items = iOrderService.getTopItem();
-        for (Item item : items) {
-//            iItemService
+//    @GetMapping("/api/getTopSellingItem")
+    public DataResult getTopItem() {
+        Map<Integer, Double> groupOrder = iOrderService.getTopItem();
+        List<Item> items = new ArrayList<>();
+        for (Map.Entry<Integer, Double> e : groupOrder.entrySet()) {
+
+//            Item item = iItemService.getById(e.getKey());
+//            item.setTotal(e.getValue());
+//            items.add(item);
         }
-        return items;
+        return DataResult.build(items);
     }
 
-    @GetMapping("/api/getBestCustomer")
+//    @GetMapping("/api/getBestCustomer")
     public List<User> getTopUser() {
         return iOrderService.getTopUser();
     }
 
-    @GetMapping("/api/getSalesAnalysisByItem")
+//    @GetMapping("/api/getSalesAnalysisByItem")
     public List<Order> getOrderByTime(@RequestParam Date start_time,
                                       @RequestParam Date end_time,
                                       @RequestParam int itemId) {
         return iOrderService.getOrderByTime(start_time, end_time, itemId);
+
     }
 }
