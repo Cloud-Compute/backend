@@ -7,19 +7,19 @@ import java.util.Date;
 @Data
 public class TimeDataResult {
 
-    private Date startTime;
+    private String startTime;
 
-    private Date endTime;
+    private String endTime;
 
     private Object data;
 
-    private TimeDataResult(Date startTime, Date endTime, Object data) {
+    private TimeDataResult(String startTime, String endTime, Object data) {
         this.data = data;
         this.startTime = startTime;
         this.endTime = endTime;
     }
 
-    public static TimeDataResult build(Date startTime, Date endTime, Object data) {
+    public static TimeDataResult build(String startTime, String endTime, Object data) {
         return new TimeDataResult(startTime, endTime, data);
     }
 

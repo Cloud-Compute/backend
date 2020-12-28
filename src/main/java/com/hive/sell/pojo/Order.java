@@ -8,6 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.Date;
+
 @Data
 @TableName("orders")
 @ToString(callSuper = true)
@@ -30,6 +32,10 @@ public class Order {
 
     @TableField("orderTime")
     private String orderTime;
+
+    // 订单时间 标准格式
+    @TableField(exist = false)
+    private Date time;
 
     /* 销售总额 */
     @TableField(exist = false)

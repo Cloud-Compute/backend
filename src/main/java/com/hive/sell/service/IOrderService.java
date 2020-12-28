@@ -12,17 +12,23 @@ import java.util.Map;
 public interface IOrderService extends IService<Order> {
 
     List<Order> getAll();
-    List<Order> getOrderByItemId(int itemId);
 
     /* 销量最高的商品 */
-//    Map<Integer, Double> getTopItem();
     List<Number> getTopItem();
 
     /* 买的最多的用户 */
-//    List<User> getTopUser();
     List<Number> getTopUser();
 
-    /* 某商品某段时间内所有订单 */
-    List<Order> getOrderByTime(Date start, Date end, int itemId);
+    // 某段时间内所有订单
+    List<Order> getOrderByTime(String startTime, String endTime);
+
+    // 某段时间内，每日总额
+    List<Double> getTotalByTime(String startTime, String endTime);
+
+    // 某商品某段时间内，每日总额
+    List<Double> getTotalByItem(String startTime, String endTime, int itemId);
+
+    // 某用户某段时间内，每日总额
+    List<Double> getTotalByUser(String startTime, String endTime, int userId);
 
 }
