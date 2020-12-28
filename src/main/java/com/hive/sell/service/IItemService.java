@@ -9,5 +9,4 @@ public interface IItemService extends IService<Item> {
 
     List<Item> getAll();
 
-//    Item getOneById(int id);
 }

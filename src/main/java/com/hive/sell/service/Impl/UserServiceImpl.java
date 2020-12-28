@@ -1,6 +1,5 @@
 package com.hive.sell.service.Impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hive.sell.dao.UserMapper;
 import com.hive.sell.pojo.User;
@@ -24,6 +23,5 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     public List<User> getAll() {
         return userMapper.selectList(null);
-//        return userMapper.findAll();
     }
 }

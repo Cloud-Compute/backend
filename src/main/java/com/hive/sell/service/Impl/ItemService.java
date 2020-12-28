@@ -1,6 +1,5 @@
 package com.hive.sell.service.Impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hive.sell.dao.ItemMapper;
 import com.hive.sell.pojo.Item;
@@ -20,9 +19,5 @@ public class ItemService extends ServiceImpl<ItemMapper, Item> implements IItemS
 
         return itemMapper.selectList(null);
     }
-
-//    public Item getOneById(int id) {
-//        return itemMapper.selectById(id);
-//    }
 
 }
