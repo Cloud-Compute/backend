@@ -15,10 +15,12 @@ public interface IOrderService extends IService<Order> {
     List<Order> getOrderByItemId(int itemId);
 
     /* 销量最高的商品 */
-    Map<Integer, Double> getTopItem();
+//    Map<Integer, Double> getTopItem();
+    List<Number> getTopItem();
 
     /* 买的最多的用户 */
-    List<User> getTopUser();
+//    List<User> getTopUser();
+    List<Number> getTopUser();
 
     /* 某商品某段时间内所有订单 */
     List<Order> getOrderByTime(Date start, Date end, int itemId);

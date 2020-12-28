@@ -33,22 +33,40 @@ public class OrderController {
         return DataResult.build(iOrderService.getAll());
     }
 
-//    @GetMapping("/api/getTopSellingItem")
+    @GetMapping("/api/getTopSellingItem")
     public DataResult getTopItem() {
-        Map<Integer, Double> groupOrder = iOrderService.getTopItem();
-        List<Item> items = new ArrayList<>();
-        for (Map.Entry<Integer, Double> e : groupOrder.entrySet()) {
+//        Map<Integer, Double> maxItem = iOrderService.getTopItem();
+//        List<Item> items = new ArrayList<>();
+//        for (Map.Entry<Integer, Double> e : groupOrder.entrySet()) {
 
 //            Item item = iItemService.getById(e.getKey());
 //            item.setTotal(e.getValue());
 //            items.add(item);
+//        }
+//        return DataResult.build(items);
+//        Item item = iItemService.getById(maxItem.)
+
+        List<Number> maxVals = iOrderService.getTopItem();
+        List<Item> items = new ArrayList<>();
+        for (int i=1; i< maxVals.size(); ++i) {
+            Item item = iItemService.getById(maxVals.get(i));
+            item.setTotal((Double)maxVals.get(0));
+            items.add(item);
         }
         return DataResult.build(items);
     }
 
-//    @GetMapping("/api/getBestCustomer")
-    public List<User> getTopUser() {
-        return iOrderService.getTopUser();
+    @GetMapping("/api/getBestCustomer")
+    public DataResult getTopUser() {
+//        return iOrderService.getTopUser();
+        List<Number> maxVals = iOrderService.getTopUser();
+        List<User> users = new ArrayList<>();
+        for (int i=1; i< maxVals.size(); ++i) {
+            User user = iUserService.getById(maxVals.get(i));
+            user.setTotal((Double)maxVals.get(0));
+            users.add(user);
+        }
+        return DataResult.build(users);
     }
 
 //    @GetMapping("/api/getSalesAnalysisByItem")

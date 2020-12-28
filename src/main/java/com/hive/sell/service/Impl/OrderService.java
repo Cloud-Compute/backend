@@ -19,6 +19,8 @@ public class OrderService extends ServiceImpl<OrderMapper, Order> implements IOr
     @Autowired
     private OrderMapper orderMapper;
 
+//    private List<Order> orders = getAll();
+
     public List<Order> getAll() {
         return orderMapper.selectList(null);
     }
@@ -31,7 +33,8 @@ public class OrderService extends ServiceImpl<OrderMapper, Order> implements IOr
 
 
     // 得到每种产品的总销量
-    public Map<Integer, Double> getTopItem() {
+    // Map<Integer, Double>
+    public List<Number> getTopItem() {
 //        QueryWrapper<Order> query = new QueryWrapper<>();
 //        query.select("sum(payment) as total, itemID")
 //                .groupBy("ItemID")
@@ -48,12 +51,16 @@ public class OrderService extends ServiceImpl<OrderMapper, Order> implements IOr
                 Collectors.groupingBy(Order::getItemId, Collectors.summingDouble(Order::getPayment)));
 
 //        return sortTotal(itemSell);
-        return itemSell;
+//        return itemSell;
+//        return this.findMaxValue(itemSell);
+        return this.getMax(itemSell);
     }
 
-    public List<User> getTopUser() {
-        List<User> users = orderMapper.findTopUser();
-        return users;
+    public List<Number> getTopUser() {
+        List<Order> orders = this.getAll();
+        Map<Integer, Double> userSell = orders.stream().collect(
+                Collectors.groupingBy(Order::getUserId, Collectors.summingDouble(Order::getPayment)));
+        return this.getMax(userSell);
     }
 
     public List<Order> getOrderByTime(Date start, Date end, int itemId) {
@@ -78,5 +85,31 @@ public class OrderService extends ServiceImpl<OrderMapper, Order> implements IOr
         }
 
         return resultMap;
+    }
+
+
+    private Map<Integer, Double> findMaxValue(Map<Integer, Double> groupMap) {
+        List<Map.Entry<Integer, Double>> entryList = new ArrayList<>(groupMap.entrySet());
+        Map.Entry<Integer, Double> max =  entryList.stream().max((o1, o2) -> o1.getValue().compareTo(o2.getValue())).get();
+        HashMap<Integer, Double> result = new HashMap<>();
+        result.put(max.getKey(), max.getValue());
+        return result;
+    }
+
+    ////只要找最大值，再找该值对应所有key，返回List(key, id1, id2...)
+    private List<Number> getMax(Map<Integer, Double> groupMap) {
+        ArrayList<Number> list = new ArrayList<>();
+        list.add(0.0);
+        for (Map.Entry<Integer, Double> entry : groupMap.entrySet()) {
+            if (entry.getValue() > (Double)list.get(0)) {
+                list.clear();
+                list.add(entry.getValue());
+                list.add(entry.getKey());
+            }
+            else if (entry.getValue().equals(list.get(0))) {
+                list.add(entry.getKey());
+            }
+        }
+        return list;
     }
 }
