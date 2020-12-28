@@ -1,9 +1,11 @@
 package com.hive.sell.controller;
 
 
+import com.hive.sell.GlobalResult.DataResult;
 import com.hive.sell.pojo.Item;
 import com.hive.sell.service.IItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +18,9 @@ public class ItemController {
     IItemService iItemService;
 
     @RequestMapping("api/getAllItems")
-    List<Item> getAll() {
-        return iItemService.getAll();
+    DataResult getAll() {
+
+        return DataResult.build(iItemService.getAll());
     }
 
     @RequestMapping("api/getTopSellingItem")
