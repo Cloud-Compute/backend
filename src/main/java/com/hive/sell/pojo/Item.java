@@ -1,5 +1,6 @@
 package com.hive.sell.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,4 +21,7 @@ public class Item {
     private String description;
 
     private double price;
+
+    @TableField(exist = false)
+    private double total;
 }

@@ -6,21 +6,26 @@
 <mapper namespace="com.hive.sell.dao.OrderMapper">
 
     <select id="findTopItem" resultType="Item">
-        SELECT itemId AS id, SUM(payment) AS total
+        SELECT itemId, SUM(payment) AS total
         FROM orders
         GROUP BY itemId
+        ORDER BY total DESC
+        LIMIT 5;
     </select>
 
     <select id="findTopUser" resultType="User">
-        SELECT userId AS id, SUM(payment) AS total
+        SELECT userId, SUM(payment) AS total
         FROM orders
         GROUP BY userId
+        ORDER BY total DESC
     </select>
 
+    <!--
     <select id="findByTime" resultType="Order">
         SELECT *
         FROM orders
         WHERE endTime > orderTime AND startTime
     </select>
+    -->
 
 </mapper>
