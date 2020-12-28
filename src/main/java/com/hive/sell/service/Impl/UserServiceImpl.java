@@ -17,10 +17,12 @@ public class UserServiceImpl implements IUserService {
     private UserMapper userMapper;
 
     public String getIdByName(String name) {
+
         return "1";
     }
 
     public List<User> getAll() {
         return userMapper.selectList(null);
+//        return userMapper.findAll();
     }
 }

@@ -14,20 +14,24 @@ import lombok.ToString;
 public class Order {
 
     @TableId(value = "id")
-    private String id;
+    private int id;
 
     @TableField(value = "userId")
-    private String userId;
+    private int userId;
 
     @TableField(value = "itemId")
-    private String itemId;
+    private int itemId;
 
     @TableField(value = "count")
-    private String count;
+    private int count;
 
     @TableField(value = "payment")
-    private String payment;
+    private double payment;
 
     @TableField("orderTime")
     private String orderTime;
+
+    /* 销售总额 */
+    @TableField(exist = false)
+    private double total;
 }

@@ -20,4 +20,7 @@ public class ItemController {
         return iItemService.getAll();
     }
 
+    @RequestMapping("api/getTopSellingItem")
+    Item getTop() {return null;}
+
 }

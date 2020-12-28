@@ -1,5 +1,6 @@
 package com.hive.sell.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,9 +14,12 @@ import lombok.ToString;
 @NoArgsConstructor
 public class User {
 
-    private String id;
+    private int id;
 
     private String name;
 
     private String phone;
+
+    @TableField(exist = false)
+    private double total;
 }
